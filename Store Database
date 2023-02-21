@@ -1,8 +1,8 @@
-**Creating a table for inventory**
+/*Creating a table for inventory*/
 
 CREATE TABLE inventory (id INTEGER PRIMARY KEY, name TEXT, cost REAL, sell_price REAL, catagory TEXT);
 
-**Inserting the information into the table**
+/*Inserting the information into the table*/
 
 INSERT INTO inventory VALUES
 (1, "And Then There Were None", 2.00, 4.00, "fiction"),
@@ -22,13 +22,13 @@ INSERT INTO inventory VALUES
 (15, "Never Finished", 12.12, 21.70, "Autobiography")
 ;
 
-**Ordering the inventory by sell price**
+/*Ordering the inventory by sell price*/
 
 SELECT * 
 FROM inventory
 ORDER BY sell_price;
 
-**Showing the total sum of the sell prices**
+/*Showing the total sum of the sell prices*/
 
 SELECT SUM(sell_price) AS total_sell
 FROM inventory
