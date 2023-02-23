@@ -1,0 +1,86 @@
+#In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data using aggregate functions, JOINs, 
+  and several other functions*/
+
+/* How many orders were placed in January?*/
+--SELECT Count(orderID)
+--FROM BIT_DB.JanSales;
+/*There were 9,723 orders in Jan.*/
+
+/*How many of those orders were placed for an iPhone?*/
+--SELECT COUNT(orderID)
+--FROM BIT_DB.JanSales
+--WHERE product = 'iPhone';
+/* 379 Orders for iPhone*/
+
+/*Select the customer account numbers for all the orders that were placed in Feb.*/
+--SELECT 
+--customers.order_id
+--,customers.acctnum
+--FROM BIT_DB.customers customers
+--JOIN BIT_DB.FebSales feb
+--ON customers.order_id = feb.orderID
+--WHERE LENGTH(customers.order_id = 6) 
+--AND order_id <> 'Order ID'
+--;
+
+/*Which product was the cheapest one sold in January, and what was the price?*/
+--SELECT 
+--Product
+--,price
+--FROM BIT_DB.JanSales
+--ORDER BY price ASC
+--LIMIT 1
+--;
+/*AAA Batteries (4-pack) at $2.99*/
+
+/*What is the total revenue for each product sold in January. 
+    Revenue being number of products sold * price of products*/
+--SELECT
+--Product
+--,SUM(quantity) AS total_sold
+--,price AS Price_per_unit
+--,ROUND((SUM(quantity) * price),2) AS total_revenue
+--FROM BIT_DB.JanSales
+--WHERE LENGTH(product >1)
+--AND product <> 'Product'
+--GROUP BY product
+--ORDER BY total_revenue DESC;
+/*The product with the highest revenue is the Macbook Pro Laptop*/
+
+/*Which products were sold in February at 548 Lincoln St, Seattle, WA 98101
+    how many of each were sold and what was the total revenue?*/
+--SELECT 
+--Product
+--,SUM(quantity) AS units_bought
+--,price
+--,ROUND((sum(quantity) * price),2) AS total_revenue
+--,location
+--FROM BIT_DB.FebSales
+--WHERE location LIKE '%548 Lincoln St%'
+--GROUP BY product
+--ORDER BY total_revenue;
+/*548 Lincoln St purchased two packs of AA batteries (4-Pack) for $3.84 each 
+    totalling $7.68 in revenue*/
+    
+/*To check my work from the previous query*/
+--SELECT 
+--Product
+--,quantity
+--,location
+--FROM BIT_DB.FebSales
+--WHERE location LIKE '%548 Lincoln St%'
+--;
+/*Same results*/
+
+/*How many customers ordered more than 2 products at a time
+    in February, and what was the average amount spent for those customers?*/
+--SELECT
+--count(distinct cust.acctnum)
+--,AVG(quantity*price)
+--FROM BIT_DB.FebSales Feb
+--LEFT JOIN BIT_DB.customers cust
+--ON Feb.orderid = cust.order_id
+--WHERE Feb.quantity>2
+--AND length(orderid) = 6
+--AND orderid <>'Order ID'
+--;
