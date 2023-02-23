@@ -1,4 +1,5 @@
-/* This is a simple dataset and some brief SQL lines to demonstrate some basic and moderate SQL queries with Superbowl Data*/
+/* This is a simple dataset and some brief SQL lines to demonstrate some basic SQL queries with Superbowl Data. 
+    functions include creating a table, inserting into a table, group by, order by, aggregate functions, and case function*/
 
 /* Creating the SB table and entering the data */
 CREATE TABLE superbowls(
