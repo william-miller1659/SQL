@@ -1,0 +1,44 @@
+/* In this example I am querying a database of Netflix shows and movies. This shows JOINs, aggregate functions, and a few other 
+    simple SQL functions*/
+
+
+--SELECT people.show_id
+--,titles.title
+--,titles.rating
+--,people.director
+--,people.cast
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+--JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" people
+--ON "titles"."show_id" = "people"."show_id";
+
+/*How many movies are in the database? No TV shows*/
+--SELECT COUNT(type) 
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+--WHERE "type" = 'Movie';
+
+/*When was the most recent batch of tv shows and/or movies added to the database?*/
+--SELECT *
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+--WHERE date_added IS NOT NULL
+--ORDER BY date_added DESC;
+
+/*List all the movies and tv shows in alphabetical order.*/
+--SELECT title
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+--ORDER BY title ASC;
+
+/*Who was the Director for the movie Bright Star?*/
+--SELECT 
+--titles.show_id
+--,titles.title
+--,people.director
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+--JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" people
+--ON titles.show_id = people.show_id
+--WHERE titles.title = 'Bright Star';
+
+/*What is the oldest movie in the database and what year was it made?*/
+--SELECT title
+--,release_year
+--FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+--ORDER BY release_year ASC LIMIT 1;
