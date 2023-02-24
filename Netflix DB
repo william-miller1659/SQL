@@ -42,3 +42,18 @@
 --,release_year
 --FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 --ORDER BY release_year ASC LIMIT 1;
+
+/*Creating a CTE to analyze further*/
+
+--WITH popularity_average_CTE AS (
+--SELECT s.artist_name,
+--AVG(s.popularity) AS average_popularity
+--FROM SpotifyData s 
+--GROUP BY s.artist_name
+--)
+ 
+--SELECT  artist_name,
+        --average_popularity,
+        --'Top Star' AS tag
+--FROM popularity_average_CTE
+--WHERE average_popularity>=90;
